@@ -6,7 +6,7 @@ if [ $# -eq 0 ]
 	exit 1
 fi
 
-if [ ! [[$1 -eq "$1"] | [$1 -eq "80"]] ]
+if [ ! [[$1 -eq "70"] | [$1 -eq "80"]] ]
   then
     echo "Usage : build-instance $1 or build-instance 80 "
 	exit 1
