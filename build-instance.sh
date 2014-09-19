@@ -31,7 +31,7 @@ $AS_VAGRANT ./bin/buildout -vvv
 cd $CWD
 if [ ! -f ./instance-$1/bin/start_openerp ] 
 then
-	echo "Instance creation error. Please restart them"
+	echo "Instance $1 creation error. Please restart them"
 	exit 1
 fi
 
@@ -54,12 +54,5 @@ echo "exec /home/vagrant/odoo/instance-$1/bin/start_openerp --proxy-mode" | sudo
 sudo ln -s /lib/init/upstart-job /etc/init.d/odoo-server-$1
 sudo service odoo-server-$1 restart
 
-if [ -f /etc/init/odoo-server-80.conf ] 
-then 
-   sudo rm /etc/init/odoo-server-80.conf
-fi
-
-
-echo
 echo "DONE!"
-echo "You may now run Odoo instance."
+echo "Instance $1 of Odoo is running !"
