@@ -26,13 +26,22 @@ Vagrant::Config.run do |config|
 	  shell.inline = "echo $1 > launch.sh"
 	  shell.args = %q{"#!/bin/sh"}
 	end
+	config.vm.provision :shell do |shell|
+	  shell.inline = "sudo -u $1 touch launch.sh"
+	  shell.args = %q{vagrant}
+	end
+	
+	config.vm.provision :shell do |shell|
+	  shell.inline = "echo $1 > launch.sh"
+	  shell.args = %q{"#!/bin/sh"}
+	end
 	
 	config.vm.provision :shell do |shell|
 	  shell.inline = "echo $1 >> launch.sh"
 	  shell.args = %q{"if [ ! -d ./odoo ]; then sudo -u vagrant git clone https://github.com/adrienpeiffer/odoo-box.git odoo;else cd ./odoo; git pull; cd ..;fi"}
+	  shell.inline = "echo $1 >> launch.sh"
+	  shell.args = %q{"for script in ./odoo/*.sh; do sudo -u vagrant ln -s ./odoo/$script $script; chmod u+x $script;done"}
 	end
-	
-	config.vm.share_folder "guest_script", "/home/vagrant/odoo/guest_script", File.expand_path("guest_script")
 	
 	config.vm.provision :shell do |shell|
 	  shell.inline = "sudo chmod u+x $1"
@@ -44,17 +53,7 @@ Vagrant::Config.run do |config|
 	end
 	
 	config.vm.provision :shell do |shell|
-	  shell.inline = "sudo chmod u+x $1"
-	  shell.args = %q{./odoo/install_odoo.sh}
-	end
-	
-	config.vm.provision :shell do |shell|
-	  shell.inline = "sudo -u $1 ./odoo/guest_script/install_odo_dependencies.sh"
-	  shell.args = %q{vagrant}
-	end
-	
-	config.vm.provision :shell do |shell|
-	  shell.inline = "sudo -u $1 ./odoo/guest_script/install_odoo80.sh"
+	  shell.inline = "sudo -u $1 ./install_odoo_dependencies.sh"
 	  shell.args = %q{vagrant}
 	end
 	
