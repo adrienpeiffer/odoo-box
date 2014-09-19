@@ -1,14 +1,12 @@
 #!/bin/sh
 
-if [ $# -eq 0 ]
-  then
+if [ $# -eq 0 ]; then
     echo "No arguments supplied"
 	exit 1
 fi
 
-if [ ! [[$1 -eq "70"] | [$1 -eq "80"]] ]
-  then
-    echo "Usage : build-instance $1 or build-instance 80 "
+if [ $1 -ne 70 ] && [ $1 -ne 80 ]; then
+    echo "Usage : build-instance 70 or build-instance 80 "
 	exit 1
 fi
 
