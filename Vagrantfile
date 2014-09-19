@@ -18,38 +18,36 @@ Vagrant::Config.run do |config|
 	end
 	
 	config.vm.provision :shell do |shell|
-	  shell.inline = "sudo -u $1 touch launch.sh"
+	  shell.inline = "sudo -u $1 touch clone.sh"
 	  shell.args = %q{vagrant}
 	end
 	
 	config.vm.provision :shell do |shell|
-	  shell.inline = "echo $1 > launch.sh"
-	  shell.args = %q{"#!/bin/sh"}
-	end
-	config.vm.provision :shell do |shell|
-	  shell.inline = "sudo -u $1 touch launch.sh"
-	  shell.args = %q{vagrant}
-	end
-	
-	config.vm.provision :shell do |shell|
-	  shell.inline = "echo $1 > launch.sh"
+	  shell.inline = "echo $1 > clone.sh"
 	  shell.args = %q{"#!/bin/sh"}
 	end
 	
 	config.vm.provision :shell do |shell|
-	  shell.inline = "echo $1 >> launch.sh"
+	  shell.inline = "echo $1 >> clone.sh"
 	  shell.args = %q{"if [ ! -d ./odoo ]; then sudo -u vagrant git clone https://github.com/adrienpeiffer/odoo-box.git odoo;else cd ./odoo; git pull; cd ..;fi"}
-	  shell.inline = "echo $1 >> launch.sh"
-	  shell.args = %q{"for script in ./odoo/*.sh; do sudo -u vagrant ln -s ./odoo/$script $script; chmod u+x $script;done"}
 	end
 	
 	config.vm.provision :shell do |shell|
 	  shell.inline = "sudo chmod u+x $1"
-	  shell.args = %q{./launch.sh}
+	  shell.args = %q{./clone.sh}
 	end
 	
 	config.vm.provision :shell do |shell|
-	  shell.inline = "./launch.sh"
+	  shell.inline = "./clone.sh"
+	end
+	
+	config.vm.provision :shell do |shell|
+	  shell.inline = "sudo chmod u+x $1"
+	  shell.args = %q{./odoo/link.sh}
+	end
+	
+	config.vm.provision :shell do |shell|
+	  shell.inline = "./odoo/link.sh"
 	end
 	
 	config.vm.provision :shell do |shell|
