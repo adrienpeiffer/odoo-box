@@ -15,6 +15,6 @@ fi
 echo "Attempting to stop other Odoo instance ..."
 sudo service odoo-server-* stop
 echo "Attempting to start $1 Odoo instance ..."
-sudo service odoo-server-$1 start
+sudo service odoo-server-$1 start || exit 1
 echo "DONE!"
 echo "Instance $1 of Odoo is started"
