@@ -21,5 +21,4 @@ sudo dpkg -i wkhtmltox-0.12.1_linux-precise-amd64.deb
 cd /usr/bin
 sudo ln -s ../local/bin/wkhtmltopdf wkhtmltopdf
 
-echo "DONE!"
 echo "Ready to install Odoo !"
