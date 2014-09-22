@@ -14,6 +14,7 @@ $AS_VAGRANT=sudo -u vagrant
 
 export HOME=/home/vagrant/
 
+cd /home/vagrant/odoo
 CWD=`pwd`
 cd instance-$1
 $AS_VAGRANT ./bin/buildout -vvv
