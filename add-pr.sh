@@ -23,7 +23,7 @@ fi
 echo "Attempting merge pull request ..."
 CWD=`pwd`
 cd $addons_dir_name
-git pull --no-edit https://github.com/OCA/$2 pull/$3/head || echo "ERROR"; exit 1
+git pull --no-edit https://github.com/OCA/$2.git pull/$3/head || echo "ERROR"; exit 1
 
 echo "DONE!"
 echo "Pull request is added !"
