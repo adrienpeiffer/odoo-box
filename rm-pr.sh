@@ -25,5 +25,5 @@ fi
 echo "Attempting to clean repository ..."
 CWD=`pwd`
 cd $ADDONS_DIR_NAME
-git reset --merge
+git reset --merge ORIG_HEAD
 echo "Local repository $2 is cleaned"
