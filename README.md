@@ -66,7 +66,21 @@ At this stage you have a running Acsone Test Box for Odoo 8.0
 Odoo instance is installed on localhost address on 8069 port.
 Then, you can open a web browser like Google Chrome or Mozilla Firefox and type 'localhost:8069' in the address bar.
 
-### Stop and start the test box
+### Stop and start test box
+
+To start Acsone test box :
+
+* vagrant up
+
+To stop :
+
+* vagrant halt
+
+To restart :
+
+* vagrant reload
+
+### Stop and start instances
 
 To start Odoo instance which is build, you can type :
 
@@ -96,26 +110,14 @@ WARNING : Don't forget to stop and start instance after this operation
 
 ### Reset everything in case things go wrong
 
-## Soft method :
+#### Soft method :
 
-* vagrant reload --provision OR vagrant up --provision (depending on vagrant VM state)
+* vagrant reload --provision OR vagrant up --provision (depending on test box state)
 
-And reload instances :
+#### Hard method :
 
 * vagrant destroy
 * Restart at installation step 4
-
-### Shutdown Acsone test box
-
-* vagrant halt
-
-### Start Acsone test box
-
-* vagrant up
-
-### Restart Acsone test box
-
-* vagrant reload
 
 ### Access to Acsone test box with ssh mode
 
