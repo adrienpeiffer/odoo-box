@@ -1,6 +1,6 @@
 #!/bin/sh
 
-AS_VAGRANT=sudo -u vagrant
+AS_VAGRANT="sudo -u vagrant"
 
 if [ $# -eq 0 ]; then
     echo "No arguments supplied"
@@ -21,6 +21,6 @@ fi
 echo "Attempting to stop other Odoo instance ..."
 pkill -f 'odoo-server-*'
 echo "Attempting to start $1 Odoo instance ..."
-sudo service odoo-server-$1 start || 'Impossible to start instance ...\nAbort ...'; exit 1
+sudo service odoo-server-$1 start || 'Impossible to start instance ...\nAbort ...' && exit 1
 
 echo "Instance $1 of Odoo is started"

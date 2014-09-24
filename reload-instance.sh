@@ -33,6 +33,6 @@ then
 	exit 1
 fi
 
-sudo service odoo-server-$1 start || echo "Impossible to start instance ..."; exit 1
+sudo service odoo-server-$1 start || echo "Impossible to start instance ..." && exit 1
 
 echo "Instance $1 of Odoo is reloaded!"
