@@ -1,6 +1,6 @@
 #!/bin/sh
 
-AS_VAGRANT=sudo -u vagrant
+AS_VAGRANT="sudo -u vagrant"
 
 if [ -z "$VAGRANT_ODOO_DEPENDENCIES" ]; then
 	sudo add-apt-repository -y ppa:git-core/ppa
@@ -16,6 +16,9 @@ if [ -z "$VAGRANT_ODOO_DEPENDENCIES" ]; then
 	sudo apt-get install -y python-virtualenv
 	sudo apt-get install -y bzr
 	sudo -u postgres createuser vagrant --superuser
+	
+	$AS_VAGRANT git config --global user.email "you@example.com"
+	$AS_VAGRANT git config --global user.name "Your Name"
 
 	cd /usr/local/bin
 	sudo wget http://sourceforge.net/projects/wkhtmltopdf/files/0.12.1/wkhtmltox-0.12.1_linux-precise-amd64.deb

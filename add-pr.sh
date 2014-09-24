@@ -25,5 +25,9 @@ fi
 echo "Attempting merge pull request ..."
 CWD=`pwd`
 cd $ADDONS_DIR_NAME
-git pull --no-edit https://github.com/OCA/$2.git pull/$3/head || echo "ERROR ...\nRollback processing ..." && git reset --hard && exit 1
+if [ ! git pull --no-edit https://github.com/OCA/$2.git pull/$3/head ]; then
+	echo "ERROR ...\nRollback processing ..."
+	exit 1
+fi
+
 echo "Pull request is added !"
