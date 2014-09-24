@@ -18,6 +18,8 @@ then
    exit 1
 fi
 
+git config --global user.email "you@example.com"
+git config --global user.name "you@example.com"
 
 export HOME=/home/vagrant/
 
