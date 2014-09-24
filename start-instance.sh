@@ -1,6 +1,6 @@
 #!/bin/sh
 
-$AS_VAGRANT=sudo -u vagrant
+AS_VAGRANT=sudo -u vagrant
 
 if [ $# -eq 0 ]; then
     echo "No arguments supplied"
