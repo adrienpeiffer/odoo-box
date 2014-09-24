@@ -88,7 +88,7 @@ To start Odoo instance which is build, you can type :
 
 To stop Odoo instance which is build, you can type :
 
-* vagrant ssh -c "./stop-instance.sh INSTANCE_NUMBER" where INSTANCE_NUMBER is 70 or 80 
+* vagrant ssh -c "./stop-instance.sh INSTANCE_NUMBER"
 
 ### Install a Pull Request to an OCA repository in order to test it
 
@@ -104,7 +104,7 @@ WARNING : Don't forget to stop and start instance after this operation
 
 To remove all pull request is installed on an instance. You have to reload this instance :
 
-* vagrant ssh -c "./reload-instance.sh 80"
+* vagrant ssh -c "./reload-instance.sh INSTANCE_NUMBER"
 
 WARNING : Don't forget to stop and start instance after this operation
 
@@ -113,6 +113,10 @@ WARNING : Don't forget to stop and start instance after this operation
 #### Soft method :
 
 * vagrant reload --provision OR vagrant up --provision (depending on test box state)
+
+And reload instances :
+
+* vagrant ssh -c "./reload-instance.sh INSTANCE_NUMBER"
 
 #### Hard method :
 
