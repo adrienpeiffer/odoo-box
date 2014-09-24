@@ -32,7 +32,7 @@ ERROR=0
 git pull --no-edit https://github.com/OCA/$2.git pull/$3/head || ERROR=1
 if [ $ERROR -eq 1 ]; then
 	echo "ERROR ...\nRollback processing ..."
-        git reset --merge ORIG_HEAD
+    git reset --merge ORIG_HEAD
 	exit 1
 fi
 
