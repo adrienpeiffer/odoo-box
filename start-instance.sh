@@ -19,7 +19,7 @@ then
 fi
 
 echo "Attempting to stop other Odoo instance ..."
-pkill -f 'odoo-server-*'
+pkill -f start_openerp
 echo "Attempting to start $1 Odoo instance ..."
 sudo service odoo-server-$1 start || exit 1
 

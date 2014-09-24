@@ -20,6 +20,7 @@ fi
 
 export HOME=/home/vagrant/
 
+echo "Attempt to stop instance ..."
 sudo service odoo-server-$1 stop || echo "Instance is not running ..."
 
 cd /home/vagrant/odoo
@@ -32,7 +33,5 @@ then
 	echo "Instance $1 reload error. Please restart them"
 	exit 1
 fi
-
-sudo service odoo-server-$1 start || exit 1
 
 echo "Instance $1 of Odoo is reloaded!"

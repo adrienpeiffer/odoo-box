@@ -51,6 +51,4 @@ then
 	exit 1
 fi
 
-sudo service odoo-server-$1 start || exit 1
-
-echo "Instance $1 of Odoo is running !"
+echo "Instance $1 of Odoo is created !"
