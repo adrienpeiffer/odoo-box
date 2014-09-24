@@ -21,6 +21,6 @@ fi
 echo "Attempting to stop other Odoo instance ..."
 pkill -f 'odoo-server-*'
 echo "Attempting to start $1 Odoo instance ..."
-sudo service odoo-server-$1 start || 'Impossible to start instance ...\nAbort ...' && exit 1
+sudo service odoo-server-$1 start || exit 1
 
 echo "Instance $1 of Odoo is started"

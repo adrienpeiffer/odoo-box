@@ -25,4 +25,4 @@ if [ -z "$VAGRANT_ODOO_DEPENDENCIES" ]; then
         echo "VAGRANT_ODOO_DEPENDENCIES='DONE'" | sudo tee -a /etc/environment
 fi
 
-echo "Ready to install Odoo !"
+echo "Ready to use Odoo !"

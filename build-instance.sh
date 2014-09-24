@@ -22,22 +22,22 @@ fi
 export HOME=/home/vagrant/
 
 cd /home/vagrant/odoo
-$AS_VAGRANT mkdir instance-$1  || echo "Error at instance directory creation" && exit 1
-$AS_VAGRANT mkdir instance-$1/log || echo "Error at log directory creation" && exit 1
+$AS_VAGRANT mkdir instance-$1  || exit 1
+$AS_VAGRANT mkdir instance-$1/log || exit 1
 CWD=`pwd`
 cd ./instance-$1
-$AS_VAGRANT ln -s ../buildout-base-$1.cfg buildout-base.cfg || echo "Error at link creation" && exit 1
-$AS_VAGRANT ln -s ../buildout-$1.cfg buildout.cfg  || echo "Error at link creation" && exit 1
+$AS_VAGRANT ln -s ../buildout-base-$1.cfg buildout-base.cfg || exit 1
+$AS_VAGRANT ln -s ../buildout-$1.cfg buildout.cfg  || exit 1
 cd $CWD
 
-$AS_VAGRANT virtualenv instance-$1 || echo "Error at virtualenv creation" && exit 1
-$AS_VAGRANT ./instance-$1/bin/pip install zc.buildout || echo "Error at zc.buildout installation" && exit 1
+$AS_VAGRANT virtualenv instance-$1 || exit 1
+$AS_VAGRANT ./instance-$1/bin/pip install zc.buildout || exit 1
 
-sudo touch /etc/init/odoo-server-$1.conf || echo "Error at launch script creation" && exit 1
+sudo touch /etc/init/odoo-server-$1.conf || exit 1
 echo "setuid vagrant" | sudo tee /etc/init/odoo-server-$1.conf
 echo "setgid vagrant" | sudo tee -a /etc/init/odoo-server-$1.conf
 echo "exec /home/vagrant/odoo/instance-$1/bin/start_openerp --proxy-mode" | sudo tee -a /etc/init/odoo-server-$1.conf
-sudo ln -s /lib/init/upstart-job /etc/init.d/odoo-server-$1 || echo "Error at launch script link creation" && exit 1
+sudo ln -s /lib/init/upstart-job /etc/init.d/odoo-server-$1 || exit 1
 
 CWD=`pwd`
 cd instance-$1
@@ -49,6 +49,6 @@ then
 	exit 1
 fi
 
-sudo service odoo-server-$1 start || echo "Error at instance launch" && exit 1
+sudo service odoo-server-$1 start || exit 1
 
 echo "Instance $1 of Odoo is running !"
