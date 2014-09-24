@@ -12,9 +12,15 @@ if [ $1 -ne 70 ] && [ $1 -ne 80 ]; then
 	exit 1
 fi
 
+if [ ! -d /home/vagrant/odoo/instance-$1 ] 
+then 
+   echo "Instance is not created ... \nAbort ..."
+   exit 1
+fi
+
 echo "Attempting to stop other Odoo instance ..."
-sudo service odoo-server-* stop
+pkill -f 'odoo-server-*'
 echo "Attempting to start $1 Odoo instance ..."
-sudo service odoo-server-$1 start || exit 1
-echo "DONE!"
+sudo service odoo-server-$1 start || 'Impossible to start instance ...\nAbort ...'; exit 1
+
 echo "Instance $1 of Odoo is started"

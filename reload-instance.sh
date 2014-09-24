@@ -1,5 +1,7 @@
 #!/bin/sh
 
+AS_VAGRANT=sudo -u vagrant
+
 if [ $# -eq 0 ]; then
     echo "No arguments supplied"
 	exit 1
@@ -10,14 +12,20 @@ if [ $1 -ne 70 ] && [ $1 -ne 80 ]; then
 	exit 1
 fi
 
-$AS_VAGRANT=sudo -u vagrant
+if [ ! -d /home/vagrant/odoo/instance-$1 ] 
+then 
+   echo "Instance is not created ... \nAbort ..."
+   exit 1
+fi
 
 export HOME=/home/vagrant/
+
+sudo service odoo-server-$1 stop || echo "Instance is not running ..."
 
 cd /home/vagrant/odoo
 CWD=`pwd`
 cd instance-$1
-$AS_VAGRANT ./bin/buildout -vvv
+$AS_VAGRANT ./bin/buildout
 cd $CWD
 if [ ! -f ./instance-$1/bin/start_openerp ] 
 then
@@ -25,7 +33,6 @@ then
 	exit 1
 fi
 
-sudo service odoo-server-$1 restart
+sudo service odoo-server-$1 start || echo "Impossible to start instance ..."; exit 1
 
-echo "DONE!"
-echo "Instance $1 of Odoo is running !"
+echo "Instance $1 of Odoo is reloaded!"
